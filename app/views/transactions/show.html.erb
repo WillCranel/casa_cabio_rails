@@ -1,0 +1,16 @@
+<h3>Identificador</h3>
+<p><%= @t.id %></p>
+<h3>Quantidade</h3>
+<p><%= @t.amount %></p>
+<h3>Moeda</h3>
+<p><%= @t.currency == 'dollar' ? 'Dólar' : 'Real' %></p>
+<h3>Cotação</h3>
+<p><%= "$ #{sprintf('%.2f', @t.quotation)}" %></p>
+<h3>Tipo</h3>
+<p><%= @t.transaction_type == 'sell' ? 'Venda' : 'Compra' %></p>
+<h3>Data</h3>
+<p><%= @t.created_at.strftime('%d/%m/%Y') %></p>
+<h3>Total</h3>
+<p><%= @t.calculate_total %></p>
+
+<%= link_to 'Voltar', root_path %>
