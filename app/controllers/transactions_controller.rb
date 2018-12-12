@@ -38,6 +38,12 @@ class TransactionsController < ApplicationController
       end
   end
 
+  def destroy
+    t = Transaction.find(params[:id])
+    t.destroy
+    redirect_to controller: 'home', action: 'index', text: 'Transação apagada com sucesso!'
+  end
+
   def transaction_params
     params.require(:transaction).permit(:amount, :currency, :quotation, :transaction_type)
   end
