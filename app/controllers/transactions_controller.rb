@@ -21,6 +21,23 @@ class TransactionsController < ApplicationController
     end
   end
 
+  def edit
+    @t = Transaction.find(params[:id])
+    @currencies = { 'Dólar' => 'Dólar', 'Real' => 'Real'}
+    @types = { 'Venda' => 'Venda', 'Compra' => 'Compra'}
+  end
+
+  def update
+    @t = Transaction.find(params[:id])
+    if @t.update(transaction_params)
+      redirect_to @t
+      else
+        @currencies = { 'Dólar' => 'Dólar', 'Real' => 'Real'}
+        @types = { 'Venda' => 'Venda', 'Compra' => 'Compra'}
+        render :edit
+      end
+  end
+
   def transaction_params
     params.require(:transaction).permit(:amount, :currency, :quotation, :transaction_type)
   end
