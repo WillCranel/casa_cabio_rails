@@ -1,10 +1,10 @@
 class Transaction < ApplicationRecord
-	validates :amount, :currency, :quotation, :transaction_type, presence: true
+	belongs_to :user
+
+	validates :amount, :currency, :quotation, :transaction_type, :user, presence: true
 
 	def calculate_total
-  	operator = transaction_type == 'sell' || transaction_type == 'Venda' ? '-' : ''
   	total = currency == 'dollar' || currency == 'Dólar' ? amount : amount / quotation
-
-  	"$ #{operator}#{sprintf('%.2f', total)}"
+  	transaction_type == 'sell' || transaction_type == 'Venda' ? -total : total
   end
 end

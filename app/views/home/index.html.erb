@@ -17,7 +17,7 @@
 		<td><%= t.amount %></td>
 		<td><%= t.currency == 'dollar' ? 'Dólar' : 'Real' %></td>
 		<td><%= t.transaction_type == 'sell' ? 'Venda' : 'Compra' %></td>
-		<td><%= t.calculate_total %></td>
+		<td><%= number_to_currency(t.calculate_total, format: '%u %n', negative_format: '%u -%n') %></td>
 	</tr>
 	<% end %>
 </table>
