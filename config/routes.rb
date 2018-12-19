@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-	root to: "home#index"
-	resources :transactions, except: [:index]
-	resources :users, only: [:show, :create, :new]
+	root to: "transactions#index"
+	resources :transactions
+	resources :users, except: [:delete]
 end
+

@@ -2,7 +2,7 @@
 <br>
 <%= @text %>
 <h2>Lista de Transações</h2>
-<% if @transactions.empty? == false %>
+<% if @transactions.any? %>
 <table>
 	<tr>
 		<th>Identificador</th>
@@ -24,6 +24,6 @@
 <% else %>
 <p>Você ainda não possui transações cadastradas</p>
 <% end %>
-
+<%= link_to 'Usuários', users_path %>
 <%= link_to 'Registrar transação', new_transaction_path %>
 <%= link_to 'Cadastrar usuário', new_user_path %>

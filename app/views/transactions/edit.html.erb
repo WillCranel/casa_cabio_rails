@@ -1,4 +1,4 @@
-<% if @t.respond_to? :errors %>
+<% if @t.errors.full_messages.any? %>
   <ul>
     <p>Você deve informar todos os dados da transação</p>
   </ul>

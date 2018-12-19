@@ -1,5 +1,10 @@
 class TransactionsController < ApplicationController
 
+  def index
+    @transactions = Transaction.all
+    @text = params[:text]
+  end
+  
 	def show
     @t = Transaction.find(params[:id])
   end
@@ -41,7 +46,7 @@ class TransactionsController < ApplicationController
   def destroy
     t = Transaction.find(params[:id])
     t.destroy
-    redirect_to controller: 'home', action: 'index', text: 'Transação apagada com sucesso!'
+    redirect_to action: 'index', text: 'Transação apagada com sucesso!'
   end
 
   def transaction_params
