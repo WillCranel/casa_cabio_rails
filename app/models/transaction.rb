@@ -7,4 +7,14 @@ class Transaction < ApplicationRecord
   	total = currency == 'dollar' || currency == 'Dólar' ? amount : amount / quotation
   	transaction_type == 'sell' || transaction_type == 'Venda' ? -total : total
   end
+
+  def currency_translated
+		return 'Dólar' if currency == 'dollar' || currency == 'Dólar'
+		'Real'
+  end
+
+  def transaction_type_translated
+		return 'Venda' if transaction_type == 'sell' || transaction_type == 'Venda'
+		'Compra'
+  end
 end

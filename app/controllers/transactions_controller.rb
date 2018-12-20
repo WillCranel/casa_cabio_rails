@@ -1,7 +1,7 @@
 class TransactionsController < ApplicationController
 
   def index
-    @transactions = Transaction.all
+    @transactions = params[:search] ? Transaction.where(currency: params[:search]) : Transaction.all
     @text = params[:text]
   end
   
@@ -11,8 +11,6 @@ class TransactionsController < ApplicationController
 
   def new
     @t = Transaction.new
-    @currencies = { 'Dólar' => 'Dólar', 'Real' => 'Real'}
-    @types = { 'Venda' => 'Venda', 'Compra' => 'Compra'}
   end
 
   def create
@@ -20,16 +18,12 @@ class TransactionsController < ApplicationController
     if @t.save
       redirect_to @t
     else
-      @currencies = { 'Dólar' => 'Dólar', 'Real' => 'Real'}
-    	@types = { 'Venda' => 'Venda', 'Compra' => 'Compra'}
       render :new
     end
   end
 
   def edit
     @t = Transaction.find(params[:id])
-    @currencies = { 'Dólar' => 'Dólar', 'Real' => 'Real'}
-    @types = { 'Venda' => 'Venda', 'Compra' => 'Compra'}
   end
 
   def update
@@ -37,8 +31,6 @@ class TransactionsController < ApplicationController
     if @t.update(transaction_params)
       redirect_to @t
       else
-        @currencies = { 'Dólar' => 'Dólar', 'Real' => 'Real'}
-        @types = { 'Venda' => 'Venda', 'Compra' => 'Compra'}
         render :edit
       end
   end

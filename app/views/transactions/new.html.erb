@@ -8,11 +8,11 @@
   <%= f.label :amount, 'Quantidade' %>
   <%= f.text_field :amount %>
   <%= f.label :currency, 'Moeda' %>
-  <%= f.select :currency, @currencies %>
+  <%= f.select :currency, { 'Dólar' => 'Dólar', 'Real' => 'Real'} %>
   <%= f.label :quotation, 'Cotação' %>
   <%= f.text_field :quotation %>
   <%= f.label :transaction_type, 'Tipo' %>
-  <%= f.select :transaction_type, @types %>
+  <%= f.select :transaction_type, { 'Venda' => 'Venda', 'Compra' => 'Compra'} %>
   <%= f.label :user_id, 'Usuário' %>
   <%= f.select :user_id, User.all.collect { |user| [user.email, user.id] } %>
   <%= f.submit 'Cadastrar' %>
