@@ -3,6 +3,15 @@
 <p><%= @u.email %></p>
 <h4>CPF</h4>
 <p><%= @u.cpf %></p>
+<h4>Endereço</h4>
+<% if @u.address.nil? %>
+	<p>Este usuário não tem um endereço cadastrado</p>
+<% else %>
+	<p><%= @u.address.street %></p>
+	<p><%= @u.address.neighbourhood %></p>
+	<p><%= "#{@u.address.city} - #{@u.address.state}" %></p>
+	<p><%= @u.address.postal_code %></p>
+<% end %>
 
 <%= link_to 'Editar', edit_user_path %>
 <%= link_to 'Voltar', root_path %>
