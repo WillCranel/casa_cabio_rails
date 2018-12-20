@@ -1,8 +1,12 @@
 class TransactionsController < ApplicationController
 
   def index
-    @transactions = params[:search] ? Transaction.where(currency: params[:search]) : Transaction.all
+    @transactions = params[:search] ? Transaction.where(currency: params[:search]) : Transaction.where("created_at >= ?", Time.zone.now.beginning_of_day)
     @text = params[:text]
+  end
+
+  def show_all
+    @transactions = Transaction.all
   end
   
 	def show

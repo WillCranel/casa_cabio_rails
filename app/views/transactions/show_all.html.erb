@@ -1,12 +1,4 @@
-<h1>Bem-vindo ao sistema de trocas de moedas</h1>
-<br>
-<%= @text %>
 <h2>Lista de Transações</h2>
-<%= form_tag('/', method: 'get') do %>
-  <%= label_tag(:search, 'Filtro por moeda') %>
-  <%= select_tag :search, options_for_select({ 'Dólar' => 'dollar', 'Real' => 'real'}) %>
-  <%= submit_tag('Filtrar') %>
-<% end %>
 <% if @transactions.empty? %>
 	<p>Você ainda não possui transações cadastradas.</p>
 <% else %>
@@ -30,7 +22,4 @@
 	</table>
 <% end %>
 
-<%= link_to 'Ver todas', controller: 'transactions', action: 'show_all' %>
-<%= link_to 'Usuários', users_path %>
-<%= link_to 'Registrar transação', new_transaction_path %>
-<%= link_to 'Cadastrar usuário', new_user_path %>
+<%= link_to 'Voltar', root_path %>
