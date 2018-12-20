@@ -3,10 +3,20 @@ class TransactionsController < ApplicationController
   def index
     @transactions = params[:search] ? Transaction.where(currency: params[:search]) : Transaction.where("created_at >= ?", Time.zone.now.beginning_of_day)
     @text = params[:text]
+    @total = calculate_total(@transactions)
   end
 
   def show_all
     @transactions = Transaction.all
+    @total = calculate_total(@transactions)
+  end
+
+  def calculate_total(transactions)
+    total = 0
+    transactions.each do | t | 
+      total += t.calculate_total
+    end
+    total
   end
   
 	def show

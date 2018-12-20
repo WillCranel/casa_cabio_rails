@@ -28,6 +28,8 @@
 		</tr>
 		<% end %>
 	</table>
+	<h3>Total agregado</h3>
+	<p><%= number_to_currency(@total, format: '%u %n', negative_format: '%u -%n') %></p>
 <% end %>
 
 <%= link_to 'Ver todas', controller: 'transactions', action: 'show_all' %>
