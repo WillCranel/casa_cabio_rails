@@ -1,25 +1,30 @@
-<h1>Bem-vindo ao sistema de trocas de moedas</h1>
-<br>
-<h2>Lista de Usuários</h2>
-<% if @users.any? %>
-<table>
-	<tr>
-		<th>Identificador</th>
-		<th>Nome</th>
-		<th>E-mail</th>
-		<th>CPF</th>
-	</tr>
-	<% @users.each do | u | %>
-	<tr>
-		<td><%= link_to u.id, u %></td>
-		<td><%= u.name %></td>
-		<td><%= u.email %></td>
-		<td><%= u.cpf %></td>
-	</tr>
+<div class="ls-box ls-md-space ls-box-gray">
+	<h2>Lista de Usuários</h2>
+	<hr>
+	<% if @users.any? %>
+	<table class="ls-table ls-sm-space">
+		<thead>
+			<tr>
+				<th>Identificador</th>
+				<th>Nome</th>
+				<th>E-mail</th>
+				<th>CPF</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @users.each do | u | %>
+			<tr>
+				<td><%= link_to u.id, u %></td>
+				<td><%= u.name %></td>
+				<td><%= u.email %></td>
+				<td><%= u.cpf %></td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+	<% else %>
+		<p>Nenhum usuário cadastrado</p>
 	<% end %>
-</table>
-<% else %>
-<p>Nenhum usuário cadastrado</p>
-<% end %>
+</div>
 
 <%= link_to 'Cadastrar usuário', new_user_path %>

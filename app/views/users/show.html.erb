@@ -1,17 +1,32 @@
-<h3><%= @u.name %></h3>
-<h4>E-mail</h4>
-<p><%= @u.email %></p>
-<h4>CPF</h4>
-<p><%= @u.cpf %></p>
-<h4>Endereço</h4>
-<% if @u.address.nil? %>
-	<p>Este usuário não tem um endereço cadastrado</p>
-<% else %>
-	<p><%= @u.address.street %></p>
-	<p><%= @u.address.neighbourhood %></p>
-	<p><%= "#{@u.address.city} - #{@u.address.state}" %></p>
-	<p><%= @u.address.postal_code %></p>
-<% end %>
+<div class="ls-box ls-md-space ls-box-gray">
+	<h3><%= @u.name %></h3>
+	<hr>
+	<table class="ls-table ls-sm-space">
+		<thead>
+			<tr>
+				<td><h4>E-mail</h4></td>
+				<td><h4>CPF</h4></td>
+				<td><h4>Endereço</h4></td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><p><%= @u.email %></p></td>
+				<td><p><%= @u.cpf %></p></td>
+				<% if @u.address.nil? %>
+					<td><p>Este usuário não tem um endereço cadastrado</p></td>
+				<% else %>
+				<td>
+					<p><%= @u.address.street %></p>
+					<p><%= @u.address.neighbourhood %></p>
+					<p><%= "#{@u.address.city} - #{@u.address.state}" %></p>
+					<p><%= @u.address.postal_code %></p>
+				</td>
+				<% end %>
+			</tr>
+		</tbody>
+	</table>
+</div>
 
-<%= link_to 'Editar', edit_user_path %>
+<%= link_to 'Editar', edit_user_path %> |
 <%= link_to 'Voltar', root_path %>

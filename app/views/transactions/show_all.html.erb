@@ -1,27 +1,35 @@
-<h2>Lista de Transações</h2>
-<% if @transactions.empty? %>
-	<p>Você ainda não possui transações cadastradas.</p>
-<% else %>
-	<table>
-		<tr>
-			<th>Identificador</th>
-			<th>Quantidade</th>
-			<th>Moeda</th>
-			<th>Tipo</th>
-			<th>Total</th>
-		</tr>
-		<% @transactions.each do | t | %>
-		<tr>
-			<td><%= link_to t.id, t %></td>
-			<td><%= t.amount %></td>
-			<td><%= t.currency_translated %></td>
-			<td><%= t.transaction_type_translated %></td>
-			<td><%= number_to_currency(t.calculate_total, format: '%u %n', negative_format: '%u -%n') %></td>
-		</tr>
-		<% end %>
-	</table>
-	<h3>Total agregado</h3>
-	<p><%= number_to_currency(@total, format: '%u %n', negative_format: '%u -%n') %></p>
-<% end %>
+<div class="ls-box ls-md-space ls-box-gray">
+	<h2>Lista de Transações</h2>
+	<hr>
+	<% if @transactions.empty? %>
+		<p>Você ainda não possui transações cadastradas.</p>
+	<% else %>
+		<table class="ls-table ls-sm-space">
+			<thead>
+				<tr>
+					<th>Identificador</th>
+					<th>Quantidade</th>
+					<th>Moeda</th>
+					<th>Tipo</th>
+					<th>Total</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @transactions.each do | t | %>
+				<tr>
+					<td><%= link_to t.id, t %></td>
+					<td><%= t.amount %></td>
+					<td><%= t.currency_translated %></td>
+					<td><%= t.transaction_type_translated %></td>
+					<td target=<%= t.calculate_total <= 0 ? 'negative' : 'positive' %>><%= number_to_currency(t.calculate_total, format: '%u %n', negative_format: '%u -%n') %></td>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+		<div class="ls-box ls-md-space ls-box-gray">
+			<h3>Total agregado: <u target=<%= @total <= 0 ? 'negative' : 'positive' %>><%= number_to_currency(@total, format: '%u %n', negative_format: '%u -%n') %></u></h3>
+		</div>
+	<% end %>
+</div>
 
 <%= link_to 'Voltar', root_path %>

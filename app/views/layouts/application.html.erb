@@ -5,11 +5,24 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <link rel="stylesheet" type="text/css" href="//assets.locaweb.com.br/locastyle/3.10.0/stylesheets/locastyle.css">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <%= yield %>
+    <script src="http://code.jquery.com/jquery-2.0.1.min.js"></script>
+    <nav id='topnav'>
+      <%= link_to 'Home', root_path %>
+      <%= link_to 'Ver todas', controller: 'transactions', action: 'show_all' %>
+      <%= link_to 'Registrar transação', new_transaction_path %>
+      <%= link_to 'Usuários', users_path %>
+      <%= link_to 'Cadastrar usuário', new_user_path %>
+    </nav>
+    <br>
+    <div class="container">
+      <%= yield %>
+    </div>
+    <script src="//assets.locaweb.com.br/locastyle/3.10.0/javascripts/locastyle.js"></script>
   </body>
 </html>

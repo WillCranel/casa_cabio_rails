@@ -1,21 +1,37 @@
 <% if @t.errors.full_messages.any? %>
-  <ul>
+  <div class="ls-alert-info ls-dismissable">
+    <span data-ls-module="dismiss" class="ls-dismiss">&times;</span>
     <p>Você deve informar todos os dados da transação</p>
-  </ul>
+  </div>
 <% end %>
-
-<%= form_for @t do |f| %>
-  <%= f.label :amount, 'Quantidade' %>
-  <%= f.text_field :amount %>
-  <%= f.label :currency, 'Moeda' %>
-  <%= f.select :currency, { 'Dólar' => 'Dólar', 'Real' => 'Real'} %>
-  <%= f.label :quotation, 'Cotação' %>
-  <%= f.text_field :quotation %>
-  <%= f.label :transaction_type, 'Tipo' %>
-  <%= f.select :transaction_type, { 'Venda' => 'Venda', 'Compra' => 'Compra'} %>
-  <%= f.label :user_id, 'Usuário' %>
-  <%= f.select :user_id, User.all.collect { |user| [user.email, user.id] } %>
-  <%= f.submit 'Cadastrar' %>
-<% end %>
+<div class="ls-box ls-md-space ls-box-gray">
+  <h2>Registrar Nova Transação</h2>
+  <hr>
+  <%= form_for @t do |f| %>
+    <table class="ls-table">
+      <tr>
+        <td><%= f.label :amount, 'Quantidade' %></td>
+        <td><%= f.text_field :amount %></td>
+      </tr>
+      <tr>
+        <td><%= f.label :currency, 'Moeda' %></td>
+        <td><%= f.select :currency, { 'Dólar' => 'Dólar', 'Real' => 'Real'} %></td>
+      </tr>
+      <tr>
+        <td><%= f.label :quotation, 'Cotação' %></td>
+        <td><%= f.text_field :quotation %></td>
+      </tr>
+      <tr>
+        <td><%= f.label :transaction_type, 'Tipo' %></td>
+        <td><%= f.select :transaction_type, { 'Venda' => 'Venda', 'Compra' => 'Compra'} %></td>
+      </tr>
+      <tr>
+        <td><%= f.label :user_id, 'Usuário' %></td>
+        <td><%= f.select :user_id, User.all.collect { |user| [user.email, user.id] } %></td>
+      </tr>
+    </table>
+    <%= f.submit 'Cadastrar' %>
+  <% end %>
+</div>
 
 <%= link_to 'Voltar', root_path %>
